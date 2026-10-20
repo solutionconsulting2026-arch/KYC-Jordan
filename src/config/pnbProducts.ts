@@ -1,0 +1,56 @@
+import { PnbProduct } from '../types/banking.types';
+
+export const PNB_PRODUCTS: PnbProduct[] = [
+  {
+    id: 'pnb-select',
+    title: 'PNB Select Saving Account',
+    tier: 'Select',
+    tagline: 'Enhanced benefits & premium privileges for salaried professionals',
+    minBalance: '₹10,000 (Average Quarterly)',
+    features: [
+      'Complimentary RuPay Platinum Contactless Debit Card (₹1,00,000 daily ATM limit)',
+      'Zero charges on NEFT/RTGS/IMPS via PNB ONE Mobile & Net Banking',
+      'Accidental Insurance Cover up to ₹10,00,000 on active debit card',
+      'Concession of 0.25% on ROI for PNB Retail Loans (Home & Car)',
+      'Free 40 cheque leaves per calendar year',
+    ],
+    recommendedFor: 'Salaried professionals with monthly income >= ₹50,000',
+    cardType: 'RuPay Platinum Contactless',
+    interestRate: '2.70% - 3.00% p.a. (RBI linked)',
+    isRecommended: true,
+  },
+  {
+    id: 'pnb-general',
+    title: 'PNB General Savings Account',
+    tier: 'General',
+    tagline: 'Everyday banking convenience with pan-India branch & ATM access',
+    minBalance: '₹1,000 (Rural) / ₹2,000 (Metro)',
+    features: [
+      'Classic RuPay Debit Card with ₹50,000 daily limit',
+      'Full PNB ONE Digital Banking & UPI access',
+      'Free passbook & periodic e-statements',
+      'Nomination facility and auto-sweep option',
+    ],
+    recommendedFor: 'General everyday individual banking needs',
+    cardType: 'RuPay Classic',
+    interestRate: '2.70% p.a.',
+    isRecommended: false,
+  },
+  {
+    id: 'pnb-elite',
+    title: 'PNB Elite Saving Account',
+    tier: 'Elite',
+    tagline: 'Exclusive wealth banking with dedicated Relationship Manager',
+    minBalance: '₹5,00,000 (Total Relationship Value)',
+    features: [
+      'Signature Visa/RuPay Select Debit Card with Lounge Access',
+      'Dedicated Wealth Manager & Priority Branch Services',
+      'Unlimited free ATM transactions at all domestic banks',
+      '50% discount on locker rentals & zero processing fee on loans',
+    ],
+    recommendedFor: 'High Net-worth Individuals & Senior Executives',
+    cardType: 'Visa Signature / RuPay Select',
+    interestRate: '3.00% p.a. with Auto-sweep multiplier',
+    isRecommended: false,
+  },
+];

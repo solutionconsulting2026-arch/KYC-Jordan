@@ -1,0 +1,70 @@
+import { ScreeningResult } from '../../types/kyc.types';
+
+export const SEED_SCREENING: Record<string, ScreeningResult[]> = {
+  '00001715': [
+    {
+      partyId: 'ENTITY',
+      partyName: 'Alpha Logistics Amman',
+      role: 'Corporate Entity',
+      result: 'Clear',
+      screenedAt: '24/10/2026 09:12 AM',
+      alertRef: 'FIRCO-ENT-99182',
+    },
+    {
+      partyId: 'P1',
+      partyName: 'Omar Haddad',
+      role: 'Beneficial Owner (42%) / Signatory',
+      result: 'Clear',
+      screenedAt: '24/10/2026 09:12 AM',
+      alertRef: 'FIRCO-IND-10029',
+    },
+    {
+      partyId: 'P2',
+      partyName: 'Yousef Barakat',
+      role: 'Beneficial Owner (28%)',
+      result: 'PotentialMatch',
+      screenedAt: '24/10/2026 09:12 AM',
+      alertRef: 'FIRCO-PEP-44819',
+    },
+    {
+      partyId: 'P3',
+      partyName: 'Khalid Al-Mazrouei',
+      role: 'Beneficial Owner (18%)',
+      result: 'Clear',
+      screenedAt: '24/10/2026 09:12 AM',
+      alertRef: 'FIRCO-IND-77182',
+    },
+    {
+      partyId: 'P4',
+      partyName: 'Omar Haddad',
+      role: 'Group CFO (Signatory)',
+      result: 'Clear',
+      screenedAt: '24/10/2026 09:12 AM',
+      alertRef: 'FIRCO-SIG-29182',
+    },
+    {
+      partyId: 'P5',
+      partyName: 'Lina Khoury',
+      role: 'Finance Director (Signatory)',
+      result: 'Clear',
+      screenedAt: '24/10/2026 09:12 AM',
+      alertRef: 'FIRCO-SIG-29183',
+    },
+    {
+      partyId: 'P6',
+      partyName: 'Tariq Shami',
+      role: 'President Director (Signatory)',
+      result: 'Clear',
+      screenedAt: '24/10/2026 09:12 AM',
+      alertRef: 'FIRCO-SIG-29184',
+    },
+    {
+      partyId: 'P7',
+      partyName: 'Nadia Saeed',
+      role: 'Director',
+      result: 'Clear',
+      screenedAt: '24/10/2026 09:12 AM',
+      alertRef: 'FIRCO-DIR-88192',
+    },
+  ],
+};
