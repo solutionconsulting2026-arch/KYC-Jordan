@@ -23,7 +23,7 @@ export const TopBar: React.FC<TopBarProps> = ({ onOpenActionCenter, onOpenHierar
   const { navigate } = useRouter();
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isPipelineOpen, setIsPipelineOpen] = useState(false);
-  const [selectedPipeline, setSelectedPipeline] = useState('Leads');
+  const [selectedPipeline, setSelectedPipeline] = useState('My Pipeline');
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleSearch = (e: React.FormEvent) => {
@@ -74,7 +74,7 @@ export const TopBar: React.FC<TopBarProps> = ({ onOpenActionCenter, onOpenHierar
           <div className="relative h-full">
             <button
               onClick={() => setIsPipelineOpen(!isPipelineOpen)}
-              className="h-full w-[168px] flex items-center justify-between pl-5 pr-5 rounded-l-full bg-black text-white text-[15px] border-r border-[#3A3B40]"
+              className="h-full w-[168px] flex items-center justify-between gap-2 pl-5 pr-4 whitespace-nowrap rounded-l-full bg-black text-white text-[15px] border-r border-[#3A3B40]"
             >
               <span>{selectedPipeline}</span>
               <ChevronDown className="w-4 h-4" />
@@ -82,7 +82,7 @@ export const TopBar: React.FC<TopBarProps> = ({ onOpenActionCenter, onOpenHierar
 
             {isPipelineOpen && (
               <div className="absolute left-0 mt-2 w-48 bg-white text-[#1F2329] border border-slate-200 rounded-lg shadow-xl py-1 z-50 text-[14px]">
-                {['Leads', 'Cases', 'Accounts', 'Contacts', 'Opportunities'].map((opt) => (
+                {['My Pipeline', 'All Leads', 'KYC Review Cases', 'Corporate Portfolios'].map((opt) => (
                   <button
                     key={opt}
                     onClick={() => {
@@ -103,9 +103,10 @@ export const TopBar: React.FC<TopBarProps> = ({ onOpenActionCenter, onOpenHierar
           <form onSubmit={handleSearch} className="flex-1 min-w-0 h-full flex items-center pl-4 pr-4">
             <input
               type="text"
+              placeholder="Search leads, cases, UCIC (e.g. 00001715)..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="flex-1 min-w-0 bg-transparent text-white placeholder-white/50 outline-none text-[14px]"
+              className="flex-1 min-w-0 mr-3 bg-transparent text-white placeholder-white/50 outline-none text-[13px]"
             />
             <span className="text-[13px] text-white font-medium mr-3 shrink-0">Advanced</span>
             <button type="submit" className="text-white hover:text-white/80 shrink-0" title="Search">
