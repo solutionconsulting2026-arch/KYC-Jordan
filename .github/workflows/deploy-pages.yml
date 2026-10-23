@@ -3,6 +3,10 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  # When Pages is still set to "Deploy from a branch", GitHub publishes the
+  # raw (unbuilt) source after each push. Re-deploy the built app once that
+  # finishes so the built version always wins.
+  page_build:
   workflow_dispatch:
 
 permissions:
