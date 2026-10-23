@@ -31,7 +31,6 @@ import {
   Award,
   LayoutTemplate,
   MoreVertical,
-  Mail,
 } from 'lucide-react';
 
 export const CasePage: React.FC = () => {
@@ -132,18 +131,6 @@ export const CasePage: React.FC = () => {
 
   const caseTabs = getAllowedTabs(currentUser, kycCase);
 
-  // Stage pill label mirrors the running chevron in StageBar
-  const STAGE_BY_TAB: Record<string, string> = {
-    initiation: 'New Lead',
-    documents: 'Contact Established',
-    ownership: 'Contact Established',
-    screening: 'Document Collection',
-    risk: 'Document Collection',
-    review: 'Hand Off To LOS',
-    edd: 'LAN Generation',
-    closure: 'Won/Lost',
-  };
-
   return (
     <div className="flex-1 flex flex-col px-[14px] pt-[18px] pb-[18px] gap-[22px] select-none animate-in fade-in duration-150">
       {/* Title & Breadcrumbs */}
@@ -158,8 +145,10 @@ export const CasePage: React.FC = () => {
           </button>
           <ChevronRight className="w-4 h-4 text-[#4A4A4A]" />
           <span>New</span>
-          <ChevronRight className="w-4 h-4 text-[#4A4A4A]" />
-          <span>{kycCase.caseNo}</span>
+          <span className="text-[#B0B0B0]">·</span>
+          <span>{customer.accountName}</span>
+          <span className="text-[#B0B0B0]">·</span>
+          <span className="font-mono font-semibold text-[#1F1F1F]">{kycCase.caseNo}</span>
         </div>
       </div>
 
@@ -175,12 +164,23 @@ export const CasePage: React.FC = () => {
         </div>
 
         {/* Stage header row + key information form */}
-        <div className="border-t border-[#E3E3E3] px-6 pt-[19px] pb-[14px] flex flex-col gap-[26px]">
+        <div className="border-t border-[#E3E3E3] px-6 pt-[19px] pb-[14px] flex flex-col gap-[18px]">
           <div className="flex items-center justify-between gap-3">
             <div className="flex items-center gap-2.5 flex-wrap">
               <span className="h-9 inline-flex items-center bg-[#1877F2] text-white text-[15px] px-[15px] rounded-full">
-                {STAGE_BY_TAB[activeTab] || 'New Lead'}
+                New Lead
               </span>
+
+              <span className="h-9 inline-flex items-center gap-1.5 text-[14px] text-[#4A4A4A] bg-white px-4 rounded-full border border-[#D0D0D0]">
+                <Calendar className="w-4 h-4 text-[#6B6B6B]" />
+                Due: <strong className="text-[#1F1F1F] font-mono">{kycCase.dueDate}</strong>
+              </span>
+
+              <span className="h-9 inline-flex items-center gap-1.5 text-[14px] text-[#4A4A4A] bg-white px-4 rounded-full border border-[#D0D0D0]">
+                <Clock className="w-4 h-4 text-[#6B6B6B]" />
+                SLA: <strong className="font-mono text-amber-700">{slaInfo.slaDisplay}</strong>
+              </span>
+
               {slaInfo.isOverdue && (
                 <span className="h-9 inline-flex items-center text-[13px] font-medium text-[#B42318] bg-[#FEF3F2] px-4 rounded-full border border-[#FECDCA]">
                   {slaInfo.overdueDays} Days Overdue ({slaInfo.escalationStatusText})
@@ -197,40 +197,33 @@ export const CasePage: React.FC = () => {
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-[20px] pr-[22px]">
-            <Field label="Category" mandatory labelWidth="w-[230px]">
-              <input type="text" readOnly value="KYC Review" />
-            </Field>
-            <Field label="Sub Category" mandatory>
-              <input type="text" readOnly value={`${kycCase.type} Review`} />
-            </Field>
-            <Field label="Customer Name" labelWidth="w-[230px]">
-              <input type="text" readOnly value={customer.accountName} />
-            </Field>
-            <Field label="Case Number">
-              <input type="text" readOnly value={kycCase.caseNo} />
-            </Field>
-            <Field label="Email" labelWidth="w-[230px]">
-              <div className="relative">
-                <input type="text" readOnly value={customer.email} style={{ paddingRight: 40 }} />
-                <Mail className="w-5 h-5 absolute right-3 top-1/2 -translate-y-1/2 text-[#1F1F1F] pointer-events-none" />
-              </div>
-            </Field>
-            <Field label="Due Date">
-              <div className="relative">
-                <input type="text" readOnly value={kycCase.dueDate} style={{ paddingRight: 40 }} />
-                <Calendar className="w-5 h-5 absolute right-3 top-1/2 -translate-y-1/2 text-[#1F1F1F] pointer-events-none" />
-              </div>
-            </Field>
-            <Field label="Sub Sub Category" labelWidth="w-[230px]">
-              <input type="text" readOnly value={`${customer.legalForm} · 24M Cycle`} />
-            </Field>
-            <Field label="SLA">
-              <div className="relative">
-                <input type="text" readOnly value={slaInfo.slaDisplay} style={{ paddingRight: 40 }} />
-                <Clock className="w-5 h-5 absolute right-3 top-1/2 -translate-y-1/2 text-[#1F1F1F] pointer-events-none" />
-              </div>
-            </Field>
+          {/* Read-Only Category Classification Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-4 bg-[#FAFAFA] rounded-[8px] border border-[#E3E3E3]">
+            <div>
+              <span className="text-[13px] text-[#6B6B6B] block">Category</span>
+              <span className="text-[15px] text-[#1F1F1F] mt-0.5 block">KYC Review</span>
+            </div>
+
+            <div>
+              <span className="text-[13px] text-[#6B6B6B] block">Sub Category</span>
+              <span className="text-[15px] text-[#1F1F1F] mt-0.5 block">
+                {kycCase.type} Review
+              </span>
+            </div>
+
+            <div>
+              <span className="text-[13px] text-[#6B6B6B] block">Sub Sub Category</span>
+              <span className="text-[15px] text-[#1F1F1F] mt-0.5 block">
+                {customer.legalForm} · 24M Cycle
+              </span>
+            </div>
+
+            <div>
+              <span className="text-[13px] text-[#6B6B6B] block">Contact Email</span>
+              <span className="text-[15px] text-[#1877F2] mt-0.5 block truncate">
+                {customer.email}
+              </span>
+            </div>
           </div>
 
           <div className="flex items-center justify-between text-[15px] text-[#6B6B6B] px-3">

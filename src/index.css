@@ -29,7 +29,7 @@
   }
   .bn-field input[readonly],
   .bn-field select:disabled {
-    background-color: #FFFFFF;
+    background-color: #F4F4F4;
     cursor: default;
   }
 }
