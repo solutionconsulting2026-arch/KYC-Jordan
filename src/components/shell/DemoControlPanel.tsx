@@ -34,7 +34,7 @@ export const DemoControlPanel: React.FC = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [showVerifications, setShowVerifications] = useState(false);
 
-  const testResults = runAllAcceptanceScenarios();
+  const testResults = showVerifications ? runAllAcceptanceScenarios() : [];
 
   // Keyboard shortcut Ctrl+Shift+D to toggle visibility for screen sharing
   useEffect(() => {

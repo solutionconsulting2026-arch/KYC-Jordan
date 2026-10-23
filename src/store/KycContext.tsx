@@ -30,7 +30,7 @@ import { calculateProposedRating, updateFactorForPep } from '../domain/riskModel
 import { executeWriteBackMock } from '../integrations/writeBack';
 import { sendDocumentRequestMock } from '../integrations/outlook';
 
-const STORAGE_KEY = 'ARAB_BANK_KYC_PROTOTYPE_V1';
+const STORAGE_KEY = 'ARAB_BANK_KYC_PROTOTYPE_V2';
 
 export interface ToastMessage {
   id: string;
@@ -214,7 +214,14 @@ export const KycProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
-        return JSON.parse(saved);
+        const parsed = JSON.parse(saved);
+        if (parsed && parsed.currentUser && parsed.cases) {
+          // Ensure currentUser has at least valid properties
+          if (!parsed.currentUser.roles || !parsed.currentUser.name) {
+            parsed.currentUser = SEED_USERS[0];
+          }
+          return parsed;
+        }
       }
     } catch (e) {
       console.warn('Failed to load state from localStorage', e);
