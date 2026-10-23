@@ -105,7 +105,7 @@ export const Corporate360Page: React.FC = () => {
       />
 
       {/* Primary Tab Navigation Bar per Section 4.3 */}
-      <div className="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs select-none">
+      <div className="flex items-center gap-1.5 shrink-0 overflow-x-auto pb-1 text-xs select-none">
         {mainTabs.map((t) => {
           const isActive = activeTab === t.id;
           return (

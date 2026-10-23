@@ -4,10 +4,10 @@ import {
   Search,
   Bell,
   Network,
-  LayoutGrid,
+  Grip,
   ChevronDown,
   HelpCircle,
-  Columns,
+  PanelsTopLeft,
 } from 'lucide-react';
 import { useKycStore } from '../../store/KycContext';
 import { useRouter } from '../../router/AppRouter';
@@ -19,14 +19,12 @@ interface TopBarProps {
 }
 
 export const TopBar: React.FC<TopBarProps> = ({ onOpenActionCenter, onOpenHierarchy }) => {
-  const { currentUser, setCurrentUser, notifications } = useKycStore();
+  const { currentUser, setCurrentUser } = useKycStore();
   const { navigate } = useRouter();
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isPipelineOpen, setIsPipelineOpen] = useState(false);
-  const [selectedPipeline, setSelectedPipeline] = useState('My Pipeline');
+  const [selectedPipeline, setSelectedPipeline] = useState('Leads');
   const [searchQuery, setSearchQuery] = useState('');
-
-  const unreadCount = notifications.filter((n) => !n.read).length;
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -43,59 +41,56 @@ export const TopBar: React.FC<TopBarProps> = ({ onOpenActionCenter, onOpenHierar
   };
 
   return (
-    <div className="flex flex-col shrink-0 z-30 select-none">
-      {/* Top Pink Accent Band from screenshot */}
-      <div className="h-[3px] w-full bg-gradient-to-r from-[#E6007A] via-[#FF2A85] to-[#E6007A] shrink-0" />
+    <div className="relative shrink-0 z-30 select-none">
+      {/* Magenta accent line across the centre of the header */}
+      <div className="absolute top-0 left-[35%] right-[18%] h-[4px] bg-[#E6007A]" />
 
       {/* Main Top Header Bar */}
-      <header className="h-[52px] bg-[#0D0E12] text-white px-4 flex items-center justify-between border-b border-white/10 shrink-0">
+      <header className="h-[78px] bg-black text-white flex items-center justify-between pr-5">
         {/* Left: Hamburger & Logo */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center h-full">
           <button
-            className="text-white/80 hover:text-white p-1 rounded hover:bg-white/10 transition-colors"
+            className="w-[77px] h-full flex items-center justify-center text-white hover:bg-white/10 transition-colors"
             title="Toggle Navigation Menu"
           >
-            <Menu className="w-5 h-5" />
+            <Menu className="w-6 h-6" strokeWidth={2} />
           </button>
 
-          {/* BUSINESS NEXT' Logo matching reference */}
+          {/* BUSINESS NEXT' wordmark */}
           <div
             onClick={() => navigate('#/kyc/KYC-2026-0150/initiation')}
-            className="flex flex-col leading-none font-sans cursor-pointer group"
+            className="flex flex-col cursor-pointer ml-[13px] font-['Poppins'] font-extrabold text-[25px] leading-[22px] tracking-[-0.02em] text-white"
             title="BUSINESS NEXT"
           >
-            <span className="text-[13px] font-black tracking-[0.14em] text-white uppercase font-sans">
-              BUSINESS
-            </span>
-            <span className="text-[13px] font-black tracking-[0.14em] text-white uppercase font-sans flex items-center">
-              NEXT<span className="text-[#FF2A85] font-black text-sm ml-[1px]">'</span>
+            <span>BUSINESS</span>
+            <span>
+              NEXT<span className="text-[18px] align-top leading-none ml-[1px]">&rsquo;</span>
             </span>
           </div>
         </div>
 
-        {/* Center: Pipeline Dropdown & Advanced Search Capsule */}
-        <div className="hidden md:flex items-center gap-3 flex-1 max-w-2xl mx-8">
-          {/* Pipeline Selector */}
-          <div className="relative">
+        {/* Center: Module selector + Advanced search capsule */}
+        <div className="hidden md:flex items-center h-[44px] w-[480px] shrink-0 rounded-full border border-[#3A3B40] bg-[#2A2B30]">
+          <div className="relative h-full">
             <button
               onClick={() => setIsPipelineOpen(!isPipelineOpen)}
-              className="flex items-center gap-2 bg-[#1A1D24] hover:bg-[#232731] text-slate-100 border border-slate-700/80 px-3.5 py-1.5 rounded-full text-xs font-medium transition-colors"
+              className="h-full w-[168px] flex items-center justify-between pl-5 pr-5 rounded-l-full bg-black text-white text-[15px] border-r border-[#3A3B40]"
             >
               <span>{selectedPipeline}</span>
-              <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
+              <ChevronDown className="w-4 h-4" />
             </button>
 
             {isPipelineOpen && (
-              <div className="absolute left-0 mt-2 w-48 bg-[#1A1D24] border border-slate-700 rounded-xl shadow-xl py-1 z-50 text-xs">
-                {['My Pipeline', 'All Leads', 'KYC Review Cases', 'Corporate Portfolios'].map((opt) => (
+              <div className="absolute left-0 mt-2 w-48 bg-white text-[#1F2329] border border-slate-200 rounded-lg shadow-xl py-1 z-50 text-[14px]">
+                {['Leads', 'Cases', 'Accounts', 'Contacts', 'Opportunities'].map((opt) => (
                   <button
                     key={opt}
                     onClick={() => {
                       setSelectedPipeline(opt);
                       setIsPipelineOpen(false);
                     }}
-                    className={`w-full text-left px-3.5 py-2 text-slate-200 hover:bg-white/10 transition-colors ${
-                      selectedPipeline === opt ? 'text-[#1877F2] font-semibold' : ''
+                    className={`w-full text-left px-4 py-2 hover:bg-slate-100 transition-colors ${
+                      selectedPipeline === opt ? 'text-[#1877F2] font-medium' : ''
                     }`}
                   >
                     {opt}
@@ -105,84 +100,48 @@ export const TopBar: React.FC<TopBarProps> = ({ onOpenActionCenter, onOpenHierar
             )}
           </div>
 
-          {/* Advanced Search Bar Capsule matching reference */}
-          <form
-            onSubmit={handleSearch}
-            className="flex-1 flex items-center bg-[#1A1D24] border border-slate-700/80 rounded-full px-3 py-1 shadow-inner text-xs focus-within:border-slate-500 transition-colors"
-          >
-            <span className="text-[11px] text-slate-400 font-medium mr-2 pr-2 border-r border-slate-700/80 select-none">
-              Advanced
-            </span>
+          <form onSubmit={handleSearch} className="flex-1 min-w-0 h-full flex items-center pl-4 pr-4">
             <input
               type="text"
-              placeholder="Search leads, cases, UCIC (e.g. 00001715)..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-transparent text-slate-100 placeholder-slate-500 outline-none text-xs"
+              className="flex-1 min-w-0 bg-transparent text-white placeholder-white/50 outline-none text-[14px]"
             />
-            <button
-              type="submit"
-              className="text-slate-400 hover:text-white p-1 rounded-full transition-colors ml-1"
-              title="Search"
-            >
-              <Search className="w-3.5 h-3.5" />
+            <span className="text-[13px] text-white font-medium mr-3 shrink-0">Advanced</span>
+            <button type="submit" className="text-white hover:text-white/80 shrink-0" title="Search">
+              <Search className="w-6 h-6" strokeWidth={1.75} />
             </button>
           </form>
         </div>
 
         {/* Right: Quick Tools & Profile */}
-        <div className="flex items-center gap-3">
-          {/* Notification Bell with Red Badge */}
-          <button
-            onClick={onOpenActionCenter}
-            className="relative text-white/80 hover:text-white p-2 rounded-lg hover:bg-white/10 transition-colors"
-            title="Notifications"
-          >
-            <Bell className="w-4 h-4" />
-            <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-rose-500 ring-2 ring-[#0D0E12]" />
+        <div className="flex items-center gap-[30px]">
+          <button onClick={onOpenActionCenter} className="relative text-white hover:text-white/80" title="Notifications">
+            <Bell className="w-[22px] h-[22px]" strokeWidth={1.75} />
+            <span className="absolute -top-[2px] right-0 w-[7px] h-[7px] rounded-full bg-[#FF1E3C]" />
           </button>
 
-          {/* 3x3 App Launcher */}
-          <button
-            onClick={() => navigate('#/worklist')}
-            className="text-white/80 hover:text-white p-2 rounded-lg hover:bg-white/10 transition-colors"
-            title="App Launcher / Worklist"
-          >
-            <LayoutGrid className="w-4 h-4" />
+          <button onClick={() => navigate('#/worklist')} className="text-white hover:text-white/80" title="App Launcher / Worklist">
+            <Grip className="w-[26px] h-[26px]" strokeWidth={2} />
           </button>
 
-          {/* Org / Hierarchy */}
-          <button
-            onClick={onOpenHierarchy}
-            className="text-white/80 hover:text-white p-2 rounded-lg hover:bg-white/10 transition-colors"
-            title="Corporate Hierarchy"
-          >
-            <Network className="w-4 h-4" />
+          <button onClick={onOpenHierarchy} className="text-white hover:text-white/80" title="Corporate Hierarchy">
+            <Network className="w-[24px] h-[24px]" strokeWidth={1.75} />
           </button>
 
-          {/* Help */}
-          <button
-            className="text-white/80 hover:text-white p-2 rounded-lg hover:bg-white/10 transition-colors hidden sm:block"
-            title="Help Center"
-          >
-            <HelpCircle className="w-4 h-4" />
+          <button className="text-white hover:text-white/80 hidden sm:block" title="Help Center">
+            <HelpCircle className="w-[26px] h-[26px]" strokeWidth={1.75} />
           </button>
 
-          {/* Layout Toggle */}
-          <button
-            className="text-white/80 hover:text-white p-2 rounded-lg hover:bg-white/10 transition-colors hidden sm:block"
-            title="Toggle Panel"
-          >
-            <Columns className="w-4 h-4" />
+          <button className="text-white hover:text-white/80 hidden sm:block" title="Toggle Panel">
+            <PanelsTopLeft className="w-[26px] h-[26px]" strokeWidth={1.75} />
           </button>
-
-          <div className="h-5 w-px bg-white/15 mx-1" />
 
           {/* User Profile Avatar with White Ring */}
           <div className="relative">
             <button
               onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
-              className="flex items-center gap-2 p-0.5 rounded-full hover:ring-2 hover:ring-white/40 transition-all"
+              className="flex items-center rounded-full"
               title={`${currentUser.name} (${currentUser.roles[0]})`}
             >
               <img
@@ -191,7 +150,7 @@ export const TopBar: React.FC<TopBarProps> = ({ onOpenActionCenter, onOpenHierar
                   'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80'
                 }
                 alt={currentUser.name}
-                className="w-8 h-8 rounded-full object-cover ring-2 ring-white/90 shadow-sm"
+                className="w-[46px] h-[46px] rounded-full object-cover border-[3px] border-white"
               />
             </button>
 

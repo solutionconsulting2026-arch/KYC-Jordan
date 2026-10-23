@@ -35,7 +35,7 @@ export default {
         'shell-dark': '#0D0E12',
       },
       fontFamily: {
-        sans: ['"Plus Jakarta Sans"', 'Poppins', 'system-ui', 'sans-serif'],
+        sans: ['Poppins', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
         'pnb': '0 2px 8px -1px rgba(123, 16, 19, 0.08), 0 1px 4px -1px rgba(0, 0, 0, 0.04)',
