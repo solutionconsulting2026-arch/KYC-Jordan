@@ -52,10 +52,10 @@ export const S06InitiationTab: React.FC<S06InitiationTabProps> = ({
           <button
             key={tab.id}
             onClick={() => setSubTab(tab.id as any)}
-            className={`h-7 px-3.5 rounded-full text-xs font-bold transition-all ${
+            className={`h-7 px-3.5 rounded-full text-xs font-semibold transition-all ${
               subTab === tab.id
-                ? 'bg-[#F5C518] text-[#1F2329] shadow-xs'
-                : 'bg-white border border-[#CFD3D8] text-[#5B616B] hover:text-[#1F2329]'
+                ? 'bg-[#1877F2] text-white shadow-xs'
+                : 'bg-white border border-slate-300 text-slate-600 hover:text-slate-900 hover:bg-slate-50'
             }`}
           >
             {tab.label}

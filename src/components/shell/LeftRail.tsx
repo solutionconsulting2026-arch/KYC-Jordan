@@ -1,18 +1,16 @@
 import React from 'react';
 import {
   Search,
+  Phone,
   Link2,
-  History,
-  Boxes,
-  Calendar,
-  User,
-  Activity,
-  Crown,
   FileText,
-  BarChart2,
-  HandMetal,
-  ListTodo,
-  Radio,
+  Filter,
+  User,
+  Crown,
+  Calendar,
+  CreditCard,
+  PieChart,
+  Settings,
 } from 'lucide-react';
 import { useRouter } from '../../router/AppRouter';
 
@@ -20,128 +18,114 @@ export const LeftRail: React.FC = () => {
   const { currentRoute, navigate } = useRouter();
 
   const isC360Active = currentRoute.route === 'c360';
-  const isWorklistActive = currentRoute.route === 'worklist';
+  const isKycActive = currentRoute.route === 'kyc';
 
   return (
-    <aside className="w-[56px] bg-[#2B2E35] border-r border-slate-700/60 flex flex-col items-center py-3 gap-1 shrink-0 z-20 select-none">
+    <aside className="w-[50px] bg-[#0D0E12] border-r border-white/10 flex flex-col items-center py-2.5 gap-1 shrink-0 z-20 select-none">
       {/* 1. Search */}
       <button
-        className="w-10 h-10 rounded-lg flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-700/40 transition-colors"
-        title="Search"
+        className="w-9 h-9 rounded-lg flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-colors"
+        title="Quick Search"
       >
         <Search className="w-4 h-4" />
       </button>
 
-      {/* 2. Link */}
+      {/* 2. Phone / Calls */}
       <button
-        className="w-10 h-10 rounded-lg flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-700/40 transition-colors"
+        className="w-9 h-9 rounded-lg flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-colors"
+        title="Telephony & Communication"
+      >
+        <Phone className="w-4 h-4" />
+      </button>
+
+      {/* 3. Link */}
+      <button
+        className="w-9 h-9 rounded-lg flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-colors"
         title="Quick Links"
       >
         <Link2 className="w-4 h-4" />
       </button>
 
-      {/* 3. History */}
+      {/* 4. Document / Cases */}
       <button
-        className="w-10 h-10 rounded-lg flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-700/40 transition-colors"
-        title="Recent History"
+        onClick={() => navigate('#/kyc/KYC-2026-0150/initiation')}
+        className={`w-9 h-9 rounded-lg flex items-center justify-center transition-colors relative ${
+          isKycActive
+            ? 'text-white bg-white/15'
+            : 'text-white/70 hover:text-white hover:bg-white/10'
+        }`}
+        title="KYC Case Details"
       >
-        <History className="w-4 h-4" />
+        <FileText className="w-4 h-4" />
+        {isKycActive && (
+          <span className="absolute left-0 top-1.5 bottom-1.5 w-[3px] bg-[#1877F2] rounded-r" />
+        )}
       </button>
 
-      {/* 4. Modules */}
+      {/* 5. Filter / Funnel */}
       <button
-        className="w-10 h-10 rounded-lg flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-700/40 transition-colors"
-        title="Application Modules"
+        className="w-9 h-9 rounded-lg flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-colors"
+        title="Filter Records"
       >
-        <Boxes className="w-4 h-4" />
+        <Filter className="w-4 h-4" />
       </button>
 
-      {/* 5. Calendar */}
+      {/* 6. Corporate 360 / User */}
       <button
-        className="w-10 h-10 rounded-lg flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-700/40 transition-colors"
+        onClick={() => navigate('#/c360/00001715')}
+        className={`w-9 h-9 rounded-lg flex items-center justify-center transition-colors relative ${
+          isC360Active
+            ? 'text-white bg-white/15'
+            : 'text-white/70 hover:text-white hover:bg-white/10'
+        }`}
+        title="Corporate 360 View"
+      >
+        <User className="w-4 h-4" />
+        {isC360Active && (
+          <span className="absolute left-0 top-1.5 bottom-1.5 w-[3px] bg-[#1877F2] rounded-r" />
+        )}
+      </button>
+
+      {/* 7. Crown / Opportunities */}
+      <button
+        className="w-9 h-9 rounded-lg flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-colors"
+        title="Key Opportunities"
+      >
+        <Crown className="w-4 h-4" />
+      </button>
+
+      {/* 8. Calendar */}
+      <button
+        className="w-9 h-9 rounded-lg flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-colors"
         title="Calendar & Visits"
       >
         <Calendar className="w-4 h-4" />
       </button>
 
-      {/* 6. Corporate 360 (User Icon - ACTIVE ROUTE) */}
+      {/* 9. Badge / Identity */}
       <button
-        onClick={() => navigate('#/c360/00001715')}
-        className={`w-10 h-10 rounded-lg flex items-center justify-center transition-colors relative ${
-          isC360Active
-            ? 'bg-amber-400/20 text-amber-400 shadow-xs'
-            : 'text-slate-400 hover:text-white hover:bg-slate-700/40'
-        }`}
-        title="Corporate 360"
+        className="w-9 h-9 rounded-lg flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-colors"
+        title="Identity & Verifications"
       >
-        <User className="w-4 h-4" />
-        {isC360Active && (
-          <span className="absolute left-0 top-2 bottom-2 w-1 bg-amber-400 rounded-r" />
-        )}
+        <CreditCard className="w-4 h-4" />
       </button>
 
-      {/* 7. Activity */}
+      {/* 10. Analytics / Pie Chart */}
       <button
-        className="w-10 h-10 rounded-lg flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-700/40 transition-colors"
-        title="Activity Stream"
+        className="w-9 h-9 rounded-lg flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-colors"
+        title="Analytics & Reports"
       >
-        <Activity className="w-4 h-4" />
+        <PieChart className="w-4 h-4" />
       </button>
 
-      {/* 8. Crown / Deals */}
-      <button
-        className="w-10 h-10 rounded-lg flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-700/40 transition-colors"
-        title="Opportunities & Pipeline"
-      >
-        <Crown className="w-4 h-4" />
-      </button>
+      <div className="flex-1" />
 
-      {/* 9. Documents */}
+      {/* 11. Settings at bottom */}
       <button
-        className="w-10 h-10 rounded-lg flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-700/40 transition-colors"
-        title="Document Management System"
+        className="w-9 h-9 rounded-lg flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-colors mb-1"
+        title="Settings & Administration"
       >
-        <FileText className="w-4 h-4" />
-      </button>
-
-      {/* 10. Analytics */}
-      <button
-        className="w-10 h-10 rounded-lg flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-700/40 transition-colors"
-        title="Analytics & Profitability"
-      >
-        <BarChart2 className="w-4 h-4" />
-      </button>
-
-      {/* 11. Hand / Engagements */}
-      <button
-        className="w-10 h-10 rounded-lg flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-700/40 transition-colors"
-        title="Client Engagements"
-      >
-        <HandMetal className="w-4 h-4" />
-      </button>
-
-      {/* 12. Worklist (List Icon - ACTIVE ROUTE) */}
-      <button
-        onClick={() => navigate('#/worklist')}
-        className={`w-10 h-10 rounded-lg flex items-center justify-center transition-colors relative ${
-          isWorklistActive
-            ? 'bg-amber-400/20 text-amber-400 shadow-xs'
-            : 'text-slate-400 hover:text-white hover:bg-slate-700/40'
-        }`}
-        title="My KYC Worklist"
-      >
-        <ListTodo className="w-4 h-4" />
-        {isWorklistActive && (
-          <span className="absolute left-0 top-2 bottom-2 w-1 bg-amber-400 rounded-r" />
-        )}
-      </button>
-
-      {/* 13. Pulse */}
-      <button
-        className="w-10 h-10 rounded-lg flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-700/40 transition-colors"
-        title="Pulse Feed"
-      >
-        <Radio className="w-4 h-4" />
+        <Settings className="w-4 h-4" />
       </button>
     </aside>
   );

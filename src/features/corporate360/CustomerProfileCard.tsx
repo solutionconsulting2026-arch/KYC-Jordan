@@ -24,7 +24,7 @@ export const CustomerProfileCard: React.FC<CustomerProfileCardProps> = ({
     profile?.riskRating === 'High' ? 'bad' : profile?.riskRating === 'Medium' ? 'warn' : 'ok';
 
   return (
-    <div className="bg-white rounded-xl shadow-xs border border-[#CFD3D8] p-5 flex flex-col justify-between">
+    <div className="bg-white rounded-2xl shadow-sm border border-slate-200/90 p-5 flex flex-col justify-between">
       {/* Header Profile Title */}
       <div>
         <div className="flex items-center justify-between pb-3 border-b border-[#E6E8EB]">

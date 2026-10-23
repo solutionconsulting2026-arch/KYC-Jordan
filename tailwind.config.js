@@ -29,9 +29,13 @@ export default {
         'status-bad-text': '#A01C12',
         'status-neutral-bg': '#E6E9EE',
         'status-neutral-text': '#3F4650',
+        'brand-pink': '#E6007A',
+        'brand-blue': '#1877F2',
+        'brand-lime': '#C6E025',
+        'shell-dark': '#0D0E12',
       },
       fontFamily: {
-        sans: ['Poppins', 'Arial', 'sans-serif'],
+        sans: ['"Plus Jakarta Sans"', 'Poppins', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
         'pnb': '0 2px 8px -1px rgba(123, 16, 19, 0.08), 0 1px 4px -1px rgba(0, 0, 0, 0.04)',

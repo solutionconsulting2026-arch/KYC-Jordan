@@ -99,7 +99,7 @@ export const InsightCard: React.FC<InsightCardProps> = ({ customer, onInitiateKy
   }
 
   return (
-    <div className="bg-white rounded-xl shadow-xs border border-[#CFD3D8] p-5 flex flex-col justify-between">
+    <div className="bg-white rounded-2xl shadow-sm border border-slate-200/90 p-5 flex flex-col justify-between">
       <div>
         {/* Card Header Title */}
         <div className="flex items-center justify-between pb-2 border-b border-[#E6E8EB]">

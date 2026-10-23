@@ -23,6 +23,14 @@ import {
   ChevronRight,
   ShieldAlert,
   Info,
+  Key,
+  Users2,
+  Search,
+  CheckCircle2,
+  AlertTriangle,
+  Award,
+  Grid,
+  MoreVertical,
 } from 'lucide-react';
 
 export const CasePage: React.FC = () => {
@@ -124,28 +132,30 @@ export const CasePage: React.FC = () => {
   const caseTabs = getAllowedTabs(currentUser, kycCase);
 
   return (
-    <div className="flex-1 flex flex-col p-5 gap-4 overflow-y-auto max-w-[1600px] w-full mx-auto select-none animate-in fade-in duration-150">
-      {/* Title & Breadcrumbs per Section 4.4 */}
-      <div className="flex flex-col gap-1">
-        <h1 className="text-[20px] font-bold text-[#1F2329] tracking-tight">
-          Corporate KYC Review
+    <div className="flex-1 flex flex-col p-6 gap-4 overflow-y-auto max-w-[1600px] w-full mx-auto select-none animate-in fade-in duration-150">
+      {/* Title & Breadcrumbs matching reference screenshot */}
+      <div className="flex flex-col gap-0.5">
+        <h1 className="text-[22px] font-bold text-slate-900 tracking-tight">
+          Individual Asset
         </h1>
-        <div className="flex items-center gap-1.5 text-xs text-[#5B616B]">
+        <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
           <button
             onClick={() => navigate(`#/c360/${customer.cif}`)}
-            className="hover:text-[#1F5BD8] transition-colors"
+            className="text-[#1877F2] hover:underline font-semibold"
           >
-            Corporate 360
+            Home
           </button>
           <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-          <span className="font-semibold text-slate-800">{customer.accountName}</span>
-          <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-          <span className="text-[#1F2329] font-bold font-mono">{kycCase.caseNo}</span>
+          <span className="text-slate-600">New</span>
+          <span className="text-slate-300 mx-1">·</span>
+          <span className="text-slate-500">{customer.accountName}</span>
+          <span className="text-slate-300 mx-1">·</span>
+          <span className="text-slate-700 font-mono font-semibold">{kycCase.caseNo}</span>
         </div>
       </div>
 
-      {/* Main White Card Container matching reference/service-management.png */}
-      <div className="bg-white rounded-xl shadow-xs border border-[#CFD3D8] p-6 flex flex-col gap-5">
+      {/* Main White Card Container matching reference screenshot */}
+      <div className="bg-white rounded-2xl shadow-sm border border-slate-200/90 p-6 flex flex-col gap-5">
         {/* Stage Bar Chevrons */}
         <StageBar
           status={kycCase.status}
@@ -153,73 +163,71 @@ export const CasePage: React.FC = () => {
           activeTab={activeTab}
         />
 
-        {/* Case Header Row */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2">
-          <div className="flex items-center gap-3 flex-wrap">
-            <span className="bg-[#1F5BD8] text-white text-xs font-bold px-3 py-1 rounded-full shadow-2xs font-mono">
-              {kycCase.caseNo}
+        {/* Case Header Row matching screenshot */}
+        <div className="flex items-center justify-between gap-3 pt-1">
+          <div className="flex items-center gap-2.5 flex-wrap">
+            <span className="bg-[#1877F2] text-white text-xs font-semibold px-4 py-1.5 rounded-full shadow-xs">
+              New Lead
             </span>
 
-            <span className="inline-flex items-center gap-1.5 text-xs font-medium text-[#5B616B] bg-slate-100 px-3 py-1 rounded-md border border-slate-200">
-              <Calendar className="w-3.5 h-3.5 text-slate-500" />
-              Due: <strong className="text-[#1F2329] font-mono">{kycCase.dueDate}</strong>
+            <span className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-600 bg-slate-50 px-3 py-1 rounded-full border border-slate-200">
+              <Calendar className="w-3.5 h-3.5 text-slate-400" />
+              Due: <strong className="text-slate-800 font-mono">{kycCase.dueDate}</strong>
             </span>
 
-            <span className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-700 bg-slate-100 px-3 py-1 rounded-md border border-slate-200">
-              <Clock className="w-3.5 h-3.5 text-slate-500" />
-              SLA: <strong className="font-mono text-amber-800">{slaInfo.slaDisplay}</strong>
+            <span className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-600 bg-slate-50 px-3 py-1 rounded-full border border-slate-200">
+              <Clock className="w-3.5 h-3.5 text-slate-400" />
+              SLA: <strong className="font-mono text-amber-700">{slaInfo.slaDisplay}</strong>
             </span>
 
             {slaInfo.isOverdue && (
-              <span className="text-[11px] font-bold text-rose-700 bg-rose-50 px-2.5 py-0.5 rounded border border-rose-200">
+              <span className="text-[11px] font-bold text-rose-700 bg-rose-50 px-3 py-1 rounded-full border border-rose-200">
                 {slaInfo.overdueDays} Days Overdue ({slaInfo.escalationStatusText})
               </span>
             )}
           </div>
 
-          <Button
-            variant="outline"
-            size="sm"
+          <button
             onClick={() => setIsNoteModalOpen(true)}
-            className="flex items-center gap-1.5 text-xs text-[#1F2329]"
+            className="flex items-center gap-1.5 text-xs text-slate-700 px-4 py-1.5 rounded-full border border-slate-300 bg-white hover:bg-slate-50 shadow-xs font-medium transition-colors"
           >
             <StickyNote className="w-3.5 h-3.5 text-slate-500" />
             Note
-          </Button>
+          </button>
         </div>
 
-        {/* Read-Only Category Classification Grid per Section 4.4 */}
+        {/* Read-Only Category Classification Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-4 bg-slate-50/70 rounded-xl border border-slate-200 text-xs">
           <div>
-            <span className="text-[11px] font-bold text-[#5B616B] uppercase block">Category</span>
-            <span className="font-semibold text-[#1F2329] mt-0.5 block">KYC Review</span>
+            <span className="text-[11px] font-bold text-slate-500 uppercase block tracking-wider">Category</span>
+            <span className="font-semibold text-slate-800 mt-0.5 block">KYC Review</span>
           </div>
 
           <div>
-            <span className="text-[11px] font-bold text-[#5B616B] uppercase block">Sub Category</span>
-            <span className="font-semibold text-[#1F2329] mt-0.5 block">
+            <span className="text-[11px] font-bold text-slate-500 uppercase block tracking-wider">Sub Category</span>
+            <span className="font-semibold text-slate-800 mt-0.5 block">
               {kycCase.type} Review
             </span>
           </div>
 
           <div>
-            <span className="text-[11px] font-bold text-[#5B616B] uppercase block">Sub Sub Category</span>
-            <span className="font-semibold text-[#1F2329] mt-0.5 block">
+            <span className="text-[11px] font-bold text-slate-500 uppercase block tracking-wider">Sub Sub Category</span>
+            <span className="font-semibold text-slate-800 mt-0.5 block">
               {customer.legalForm} · 24M Cycle
             </span>
           </div>
 
           <div>
-            <span className="text-[11px] font-bold text-[#5B616B] uppercase block">Contact Email</span>
-            <span className="font-medium text-[#1F5BD8] mt-0.5 block truncate">
+            <span className="text-[11px] font-bold text-slate-500 uppercase block tracking-wider">Contact Email</span>
+            <span className="font-medium text-[#1877F2] mt-0.5 block truncate">
               {customer.email}
             </span>
           </div>
         </div>
 
-        {/* Tagline & Confidentiality Tooltip per BR-22 */}
-        <div className="flex items-center justify-between text-[11px] text-[#5B616B] -mt-1">
-          <span>KYC Review v1.0 powered by AutoFlow</span>
+        {/* Tagline matching reference screenshot */}
+        <div className="flex items-center justify-between text-[11px] text-slate-400 font-medium -mt-1">
+          <span>Loan Application v1.0 powered by AutoFlow</span>
           <span
             className="text-[11px] text-slate-500 cursor-help flex items-center gap-1 hover:text-slate-800"
             title="Suspicions are referred to the Reporting Officer through the Bank's channel (BR-22)."
@@ -228,24 +236,48 @@ export const CasePage: React.FC = () => {
           </span>
         </div>
 
-        {/* Main Tabs Group (Outline Rectangles, Active Black #1F2329 per Section 4.1) */}
-        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs border-b border-[#E6E8EB]">
-          {caseTabs.map((tab) => {
-            const isActive = activeTab === tab.id;
-            return (
-              <button
-                key={tab.id}
-                onClick={() => handleTabChange(tab.id)}
-                className={`h-9 px-4 rounded-lg font-semibold whitespace-nowrap transition-all border ${
-                  isActive
-                    ? 'bg-[#1F2329] text-white border-[#1F2329] shadow-xs'
-                    : 'bg-white text-[#1F2329] border-[#CFD3D8] hover:bg-slate-50'
-                }`}
-              >
-                {tab.label}
-              </button>
-            );
-          })}
+        {/* Main Tabs Group (Pills matching reference screenshot) */}
+        <div className="flex items-center justify-between gap-3 border-b border-slate-200 pb-2">
+          <div className="flex items-center gap-2 overflow-x-auto text-xs py-1 scrollbar-none">
+            {caseTabs.map((tab) => {
+              const isActive = activeTab === tab.id;
+              
+              // Icon mapping to match screenshot style
+              let icon = <FileText className="w-3.5 h-3.5" />;
+              if (tab.id === 'initiation') icon = <Key className="w-3.5 h-3.5" />;
+              else if (tab.id === 'documents') icon = <FileText className="w-3.5 h-3.5" />;
+              else if (tab.id === 'ownership') icon = <Users2 className="w-3.5 h-3.5" />;
+              else if (tab.id === 'screening') icon = <Search className="w-3.5 h-3.5" />;
+              else if (tab.id === 'risk') icon = <ShieldAlert className="w-3.5 h-3.5" />;
+              else if (tab.id === 'review') icon = <CheckCircle2 className="w-3.5 h-3.5" />;
+              else if (tab.id === 'edd') icon = <AlertTriangle className="w-3.5 h-3.5" />;
+              else if (tab.id === 'closure') icon = <Award className="w-3.5 h-3.5" />;
+
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => handleTabChange(tab.id)}
+                  className={`h-9 px-4 rounded-lg font-semibold whitespace-nowrap transition-all border flex items-center gap-2 ${
+                    isActive
+                      ? 'bg-[#0D0E12] text-white border-[#0D0E12] shadow-xs'
+                      : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
+                  }`}
+                >
+                  {icon}
+                  <span>{tab.label}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="hidden sm:flex items-center gap-1 text-slate-400 shrink-0">
+            <button className="p-1.5 hover:text-slate-700 hover:bg-slate-100 rounded-lg transition-colors" title="Grid View">
+              <Grid className="w-4 h-4" />
+            </button>
+            <button className="p-1.5 hover:text-slate-700 hover:bg-slate-100 rounded-lg transition-colors" title="More Options">
+              <MoreVertical className="w-4 h-4" />
+            </button>
+          </div>
         </div>
 
         {/* Active Stage Tab Viewport */}
@@ -316,33 +348,33 @@ export const CasePage: React.FC = () => {
           )}
         </div>
 
-        {/* Sticky Centered Footer Controls per Section 4.4 */}
-        <div className="pt-6 border-t border-[#E6E8EB] flex items-center justify-center gap-3">
-          <Button
-            variant="outline"
+        {/* Sticky Centered Footer Controls matching reference screenshot */}
+        <div className="pt-6 border-t border-slate-200 flex items-center justify-center gap-3">
+          <button
+            type="button"
             disabled={kycCase.status === 'Closed'}
             onClick={() => showToast({ type: 'info', title: 'Draft Saved', description: 'Work-in-progress state preserved.' })}
-            className="w-28 text-xs font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+            className="h-9 px-7 rounded-full text-xs font-semibold border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 shadow-xs transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Save
-          </Button>
+          </button>
 
-          <Button
-            variant="primary"
+          <button
+            type="button"
             disabled={kycCase.status === 'Closed'}
             onClick={handleSaveAndProceed}
-            className="px-6 text-xs font-bold disabled:opacity-50 disabled:cursor-not-allowed"
+            className="h-9 px-8 rounded-full text-xs font-bold bg-[#C6E025] hover:bg-[#B5DC18] text-[#141B08] shadow-xs hover:shadow transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Save and Proceed
-          </Button>
+          </button>
 
-          <Button
-            variant="outline"
+          <button
+            type="button"
             onClick={() => navigate(`#/c360/${customer.cif}`)}
-            className="w-28 text-xs font-semibold"
+            className="h-9 px-5 text-xs font-semibold text-slate-600 hover:text-slate-900 transition-colors"
           >
             Cancel
-          </Button>
+          </button>
         </div>
       </div>
 

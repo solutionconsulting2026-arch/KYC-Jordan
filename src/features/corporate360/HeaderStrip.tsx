@@ -27,7 +27,7 @@ export const HeaderStrip: React.FC<HeaderStripProps> = ({
   const kycStatus = deriveKycStatus(profile, currentDate, Boolean(isCaseOpen));
 
   return (
-    <div className="bg-white rounded-xl shadow-xs border border-[#CFD3D8] px-6 py-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+    <div className="bg-white rounded-2xl shadow-sm border border-slate-200/90 px-6 py-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
       {/* 5-Column Entity Master Strip */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 flex-1 items-center">
         {/* 1. CIF NO. */}

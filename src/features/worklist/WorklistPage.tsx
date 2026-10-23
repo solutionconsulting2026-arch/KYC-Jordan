@@ -110,34 +110,34 @@ export const WorklistPage: React.FC = () => {
 
       {/* KPI Tiles Header */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <div className="bg-white p-4 rounded-xl border border-[#CFD3D8] shadow-xs">
-          <span className="text-[11px] font-bold text-[#5B616B] uppercase block">Open Reviews</span>
-          <span className="text-[22px] font-extrabold text-[#1F2329] mt-1 block">
+        <div className="bg-white p-4 rounded-2xl border border-slate-200/90 shadow-sm">
+          <span className="text-[11px] font-bold text-slate-500 uppercase block tracking-wider">Open Reviews</span>
+          <span className="text-[22px] font-extrabold text-slate-900 mt-1 block">
             {openCasesCount}
           </span>
-          <span className="text-[11px] text-slate-500">Active workflows</span>
+          <span className="text-[11px] text-slate-400">Active workflows</span>
         </div>
 
-        <div className="bg-white p-4 rounded-xl border border-[#CFD3D8] shadow-xs">
-          <span className="text-[11px] font-bold text-[#5B616B] uppercase block">Due ≤ 30 Days</span>
-          <span className="text-[22px] font-extrabold text-amber-700 mt-1 block">
+        <div className="bg-white p-4 rounded-2xl border border-slate-200/90 shadow-sm">
+          <span className="text-[11px] font-bold text-slate-500 uppercase block tracking-wider">Due ≤ 30 Days</span>
+          <span className="text-[22px] font-extrabold text-amber-600 mt-1 block">
             {due30CasesCount}
           </span>
-          <span className="text-[11px] text-amber-700 font-medium">Action window active</span>
+          <span className="text-[11px] text-amber-600 font-medium">Action window active</span>
         </div>
 
-        <div className="bg-white p-4 rounded-xl border border-[#CFD3D8] shadow-xs">
-          <span className="text-[11px] font-bold text-[#5B616B] uppercase block">Overdue</span>
-          <span className="text-[22px] font-extrabold text-rose-700 mt-1 block">
+        <div className="bg-white p-4 rounded-2xl border border-slate-200/90 shadow-sm">
+          <span className="text-[11px] font-bold text-slate-500 uppercase block tracking-wider">Overdue</span>
+          <span className="text-[22px] font-extrabold text-rose-600 mt-1 block">
             {overdueCasesCount}
           </span>
-          <span className="text-[11px] text-rose-700 font-semibold">SLA escalated</span>
+          <span className="text-[11px] text-rose-600 font-semibold">SLA escalated</span>
         </div>
 
-        <div className="bg-white p-4 rounded-xl border border-[#CFD3D8] shadow-xs">
-          <span className="text-[11px] font-bold text-[#5B616B] uppercase block">Avg Days to Close</span>
-          <span className="text-[22px] font-extrabold text-emerald-700 mt-1 block">8.4 D</span>
-          <span className="text-[11px] text-slate-500">Trailing 90 days</span>
+        <div className="bg-white p-4 rounded-2xl border border-slate-200/90 shadow-sm">
+          <span className="text-[11px] font-bold text-slate-500 uppercase block tracking-wider">Avg Days to Close</span>
+          <span className="text-[22px] font-extrabold text-emerald-600 mt-1 block">8.4 D</span>
+          <span className="text-[11px] text-slate-400">Trailing 90 days</span>
         </div>
       </div>
 
@@ -157,8 +157,8 @@ export const WorklistPage: React.FC = () => {
             onClick={() => setActiveFilter(f.id as any)}
             className={`h-8 px-4 rounded-full font-semibold transition-all ${
               activeFilter === f.id
-                ? 'bg-[#1F2329] text-white shadow-xs'
-                : 'bg-white text-[#5B616B] border border-[#CFD3D8] hover:text-[#1F2329]'
+                ? 'bg-[#0D0E12] text-white shadow-xs'
+                : 'bg-white text-slate-600 border border-slate-300 hover:text-slate-900 hover:bg-slate-50'
             }`}
           >
             {f.label}
@@ -167,7 +167,7 @@ export const WorklistPage: React.FC = () => {
       </div>
 
       {/* Main Worklist Table */}
-      <div className="bg-white rounded-xl border border-[#CFD3D8] overflow-hidden shadow-xs">
+      <div className="bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-sm">
         <table className="w-full text-xs text-left">
           <thead className="bg-[#F8FAFC] border-b border-[#E6E8EB] text-[#5B616B] font-semibold">
             <tr>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export type ButtonVariant = 'primary' | 'outline' | 'dark' | 'worknext' | 'danger' | 'ghost';
+export type ButtonVariant = 'primary' | 'proceed' | 'outline' | 'dark' | 'worknext' | 'danger' | 'ghost';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
@@ -20,17 +20,19 @@ export const Button: React.FC<ButtonProps> = ({
 }) => {
   const variantStyles: Record<ButtonVariant, string> = {
     primary:
-      'bg-[#F5C518] hover:bg-[#E5B508] text-[#1F2329] font-semibold border border-transparent shadow-xs',
+      'bg-[#C6E025] hover:bg-[#B5DC18] text-[#141B08] font-bold border border-transparent shadow-xs',
+    proceed:
+      'bg-[#C6E025] hover:bg-[#B5DC18] text-[#141B08] font-bold border border-transparent shadow-xs',
     outline:
-      'bg-white hover:bg-[#F4F6F8] text-[#1F2329] font-medium border border-[#CFD3D8] hover:border-[#B5BAC0]',
+      'bg-white hover:bg-slate-50 text-slate-800 font-semibold border border-slate-300 hover:border-slate-400',
     dark:
-      'bg-[#1F2329] hover:bg-[#2B2E35] text-white font-medium border border-transparent',
+      'bg-[#0D0E12] hover:bg-[#1A1D24] text-white font-semibold border border-transparent',
     worknext:
       'bg-gradient-to-r from-[#FF7A45] via-[#EE2B76] to-[#7B3FE4] hover:opacity-95 text-white font-medium shadow-xs',
     danger:
-      'bg-[#FEE4E2] hover:bg-[#FECDCA] text-[#A01C12] font-medium border border-[#FDA29B]',
+      'bg-rose-50 hover:bg-rose-100 text-rose-700 font-medium border border-rose-300',
     ghost:
-      'bg-transparent hover:bg-slate-100 text-[#1F2329] font-medium border border-transparent',
+      'bg-transparent hover:bg-slate-100 text-slate-700 font-medium border border-transparent',
   };
 
   const sizeStyles = {

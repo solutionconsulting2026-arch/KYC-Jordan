@@ -27,7 +27,7 @@ export const AssignedSignatoriesCard: React.FC<AssignedSignatoriesCardProps> = (
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-xs border border-[#CFD3D8] p-5 flex flex-col justify-between">
+    <div className="bg-white rounded-2xl shadow-sm border border-slate-200/90 p-5 flex flex-col justify-between">
       <div>
         {/* Header Strip */}
         <div className="flex items-center justify-between pb-3 border-b border-[#E6E8EB]">
