@@ -17,7 +17,7 @@ function AppContent() {
   const [isHierarchyOpen, setIsHierarchyOpen] = useState(false);
 
   return (
-    <div className="h-screen w-screen overflow-hidden bg-[#F4F6F9] text-[#1F2329] font-sans flex flex-col antialiased">
+    <div className="h-screen w-screen overflow-hidden bg-black text-[#1F2329] font-sans flex flex-col antialiased">
       {/* Shell TopBar with pink band & header */}
       <TopBar
         onOpenActionCenter={() => setIsActionCenterOpen(true)}
@@ -25,9 +25,9 @@ function AppContent() {
       />
 
       {/* Main Workspace Layout with Left Rail */}
-      <div className="flex-1 flex overflow-hidden">
+      <div className="flex-1 flex overflow-hidden bg-black">
         <LeftRail />
-        <main className="flex-1 flex flex-col overflow-y-auto bg-[#F4F6F9]">
+        <main className="flex-1 flex flex-col overflow-y-auto bg-[#EBEBEB] rounded-t-[22px] mr-[18px]">
           {currentRoute.route === 'c360' && <Corporate360Page />}
           {currentRoute.route === 'kyc' && <CasePage />}
           {currentRoute.route === 'worklist' && <WorklistPage />}
