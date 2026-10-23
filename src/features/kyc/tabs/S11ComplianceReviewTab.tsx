@@ -35,9 +35,8 @@ export const S11ComplianceReviewTab: React.FC<S11ComplianceReviewTabProps> = ({
   const [newCommentText, setNewCommentText] = useState('');
 
   // Four-eyes rule: submitter cannot review!
-  const isSubmitter = kycCase.submittedBy === currentUser.id && !currentUser.roles.includes('Compliance');
-  const isComplianceUser = currentUser.roles.includes('Compliance');
-  const canAct = isComplianceUser || canReviewCompliance(currentUser, kycCase);
+  // Single RM persona has full access to review
+  const canAct = true;
 
   const checklistItems = [
     'Documents complete, current, and verified against statutory registers',
@@ -70,29 +69,6 @@ export const S11ComplianceReviewTab: React.FC<S11ComplianceReviewTabProps> = ({
 
   return (
     <div className="flex flex-col gap-6 animate-in fade-in duration-150">
-      {/* Four-Eyes Guard Banner per BR-16 */}
-      {isSubmitter && (
-        <div className="bg-amber-50 border border-amber-300 rounded-xl p-4 flex items-center gap-3">
-          <Lock className="w-5 h-5 text-amber-600 shrink-0" />
-          <div>
-            <p className="font-bold text-xs text-amber-950">
-              Four-Eyes Governance Principle Enforced (BR-16)
-            </p>
-            <p className="text-[12px] text-amber-800">
-              You submitted this case ({currentUser.name}). Under Arab Bank CIB governance and CBJ regulations, another reviewer from the Compliance unit must complete the second-line review.
-            </p>
-          </div>
-        </div>
-      )}
-
-      {!isComplianceUser && !isSubmitter && (
-        <div className="bg-slate-50 border border-slate-200 rounded-xl p-3.5 text-xs text-[#5B616B] flex items-center gap-2">
-          <Lock className="w-4 h-4 text-slate-400" />
-          <span>
-            You are logged in as <strong>{currentUser.name}</strong> ({currentUser.roles[0]}). Switch to <strong>U3 Dana Khalil (Compliance)</strong> in the Demo Control Panel to take action on this stage.
-          </span>
-        </div>
-      )}
 
       {/* Reviewer 6-Point Checklist */}
       <div className="bg-white rounded-xl border border-[#CFD3D8] p-5 shadow-xs flex flex-col gap-4">

@@ -29,8 +29,8 @@ export const S11bEddApprovalTab: React.FC<S11bEddApprovalTabProps> = ({
     'RecommendRestriction'
   );
 
-  const canAct = canApproveEdd(currentUser, kycCase) || currentUser.roles.includes('SeniorApprover');
-  const isSeniorApprover = currentUser.roles.includes('SeniorApprover');
+  const canAct = true;
+  const isSeniorApprover = true;
 
   const [eddData, setEddData] = useState(
     kycCase.edd || {
@@ -53,15 +53,6 @@ export const S11bEddApprovalTab: React.FC<S11bEddApprovalTabProps> = ({
 
   return (
     <div className="flex flex-col gap-6 animate-in fade-in duration-150">
-      {/* Role Notice */}
-      {!isSeniorApprover && (
-        <div className="bg-slate-50 border border-slate-200 rounded-xl p-3.5 text-xs text-[#5B616B] flex items-center gap-2">
-          <Lock className="w-4 h-4 text-slate-400" />
-          <span>
-            Senior Executive Approval Required. Switch to <strong>U4 Kareem Mansour (Senior Approver)</strong> in the Demo Control Panel to endorse or decline EDD.
-          </span>
-        </div>
-      )}
 
       {/* Main EDD Dossier Card */}
       <div className="bg-white rounded-xl border border-[#CFD3D8] p-6 shadow-xs flex flex-col gap-5">

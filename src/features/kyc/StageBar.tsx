@@ -11,72 +11,69 @@ export const StageBar: React.FC<StageBarProps> = ({ status, eddRequired, activeT
   // Compute stage states
   // Stages: 1. Initiation, 2. Data & Documents, 3. Risk Assessment, 4. Compliance Review, 5. EDD Approval, 6. Closure
   const getStageStatus = (stageIdx: number): { state: 'current' | 'done' | 'locked'; subLabel: string } => {
-    // When on initiation screen (flow start), only Initiation is active (Blue), rest are disabled/greyed out
+    // 1. Case Information / Initiation tab
     if (activeTab === 'initiation') {
-      if (stageIdx === 1) {
-        return { state: 'current', subLabel: 'Running' };
-      }
+      if (stageIdx === 1) return { state: 'current', subLabel: 'Running' };
       return { state: 'locked', subLabel: 'Not Active' };
     }
 
-    switch (stageIdx) {
-      case 1: // Initiation
-        return { state: 'done', subLabel: 'Completed' };
-
-      case 2: // Data & Documents
-        if (activeTab === 'documents' || activeTab === 'ownership') {
-          return { state: 'current', subLabel: status === 'Returned' ? 'Returned' : 'Running' };
-        }
-        return { state: 'done', subLabel: 'Completed' };
-
-      case 3: // Risk Assessment
-        if (activeTab === 'screening' || activeTab === 'risk') {
-          return { state: 'current', subLabel: 'Running' };
-        }
-        if (['review', 'edd', 'closure'].includes(activeTab) || ['Submitted', 'UnderTLReview', 'UnderComplianceReview', 'PendingEDDApproval', 'Approved', 'Closed'].includes(status)) {
-          return { state: 'done', subLabel: 'Completed' };
-        }
-        return { state: 'locked', subLabel: 'Not Active' };
-
-      case 4: // Compliance Review
-        if (activeTab === 'review' || ['Submitted', 'UnderTLReview', 'UnderComplianceReview'].includes(status)) {
-          if (['PendingEDDApproval', 'Approved', 'Closed'].includes(status) && activeTab !== 'review') {
-            return { state: 'done', subLabel: 'Completed' };
-          }
-          return { state: 'current', subLabel: status === 'UnderTLReview' ? 'Under TL Review' : 'Under Review' };
-        }
-        if (['PendingEDDApproval', 'Approved', 'Closed'].includes(status)) {
-          return { state: 'done', subLabel: 'Completed' };
-        }
-        return { state: 'locked', subLabel: 'Not Active' };
-
-      case 5: // EDD Approval
-        if (activeTab === 'edd' || status === 'PendingEDDApproval') {
-          if (['Approved', 'Closed'].includes(status) && activeTab !== 'edd') {
-            return { state: eddRequired ? 'done' : 'locked', subLabel: eddRequired ? 'Approved' : 'Skipped' };
-          }
-          return { state: 'current', subLabel: 'Required' };
-        }
-        if (['Approved', 'Closed'].includes(status)) {
-          return { state: eddRequired ? 'done' : 'locked', subLabel: eddRequired ? 'Approved' : 'Skipped' };
-        }
-        return {
-          state: 'locked',
-          subLabel: eddRequired ? 'Required' : 'Conditional',
-        };
-
-      case 6: // Closure
-        if (status === 'Closed') {
-          return { state: 'done', subLabel: 'Completed' };
-        }
-        if (activeTab === 'closure' || status === 'Approved') {
-          return { state: 'current', subLabel: 'Approved' };
-        }
-        return { state: 'locked', subLabel: 'Not Active' };
-
-      default:
-        return { state: 'locked', subLabel: 'Not Active' };
+    // 2. Document Checklist tab (or Entity Ownership)
+    // "Upon click of Document checklist tab:
+    //  a. Initiation stage should be marked completed with green color.
+    //  b. Only 'Data & Documents' stage should get highlighted in blue, on ribbon.
+    //  c. 'Risk assessment' and 'Compliance review' and further stages should be greyed out."
+    if (activeTab === 'documents' || activeTab === 'ownership') {
+      if (stageIdx === 1) return { state: 'done', subLabel: 'Completed' };
+      if (stageIdx === 2) return { state: 'current', subLabel: 'Running' };
+      return { state: 'locked', subLabel: 'Not Active' };
     }
+
+    // 3. Screening tab
+    // "Upon click of Screening tab:
+    //  a. 'Initiation' & 'Data & Documents' stages should be marked completed with green color.
+    //  b. 'Risk assessment' stage should be highlighted in blue color, as running.
+    //  c. 'Compliance review' & further stages should be greyed out."
+    if (activeTab === 'screening') {
+      if (stageIdx === 1 || stageIdx === 2) return { state: 'done', subLabel: 'Completed' };
+      if (stageIdx === 3) return { state: 'current', subLabel: 'Running' };
+      return { state: 'locked', subLabel: 'Not Active' };
+    }
+
+    // 4. Risk Assessment tab
+    // "Upon click of Risk Assessment tab:
+    //  a. 'Initiation' & 'Data & Documents' stages should be marked completed with green color.
+    //  b. 'Risk assessment' stage should be highlighted in blue color, as running.
+    //  c. 'Compliance review' & further stages should be greyed out."
+    if (activeTab === 'risk') {
+      if (stageIdx === 1 || stageIdx === 2) return { state: 'done', subLabel: 'Completed' };
+      if (stageIdx === 3) return { state: 'current', subLabel: 'Running' };
+      return { state: 'locked', subLabel: 'Not Active' };
+    }
+
+    // 5. Compliance Review tab
+    if (activeTab === 'review') {
+      if (stageIdx <= 3) return { state: 'done', subLabel: 'Completed' };
+      if (stageIdx === 4) return { state: 'current', subLabel: 'Under Review' };
+      return { state: 'locked', subLabel: 'Not Active' };
+    }
+
+    // 6. EDD Approval tab
+    if (activeTab === 'edd') {
+      if (stageIdx <= 4) return { state: 'done', subLabel: 'Completed' };
+      if (stageIdx === 5) return { state: 'current', subLabel: 'Required' };
+      return { state: 'locked', subLabel: 'Not Active' };
+    }
+
+    // 7. Approvals & Audit / Closure tab
+    if (activeTab === 'closure') {
+      if (stageIdx <= 5) return { state: 'done', subLabel: 'Completed' };
+      if (stageIdx === 6) {
+        if (status === 'Closed') return { state: 'done', subLabel: 'Completed' };
+        return { state: 'current', subLabel: 'Approved' };
+      }
+    }
+
+    return { state: 'locked', subLabel: 'Not Active' };
   };
 
   const stages = [

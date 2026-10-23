@@ -62,21 +62,6 @@ export const CasePage: React.FC = () => {
     }
   }, [currentRoute.tab, caseId]);
 
-  // Navigate automatically when persona changes
-  useEffect(() => {
-    if (currentUser.roles.includes('SeniorApprover')) {
-      if (activeTab !== 'edd' && activeTab !== 'closure') {
-        setActiveTab('edd');
-        navigate(`#/kyc/${caseId}/edd`);
-      }
-    } else if (currentUser.roles.includes('Compliance')) {
-      if (activeTab === 'edd' || activeTab === 'closure') {
-        setActiveTab('review');
-        navigate(`#/kyc/${caseId}/review`);
-      }
-    }
-  }, [currentUser.id]);
-
   if (!kycCase || !customer) {
     return (
       <div className="p-8 text-center text-slate-500 text-xs">

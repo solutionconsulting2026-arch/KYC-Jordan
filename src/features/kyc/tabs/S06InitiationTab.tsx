@@ -300,46 +300,32 @@ export const S06InitiationTab: React.FC<S06InitiationTabProps> = ({
                 <tr className="border-b border-[#E6E8EB] text-[#5B616B] font-semibold">
                   <th className="pb-2">Field Description</th>
                   <th className="pb-2">AS400 System Value</th>
-                  <th className="pb-2">Current Case Review Value</th>
-                  <th className="pb-2 text-right">Change Flag</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#F1F3F5]">
                 <tr>
                   <td className="py-2.5 font-medium">Legal Form</td>
                   <td className="py-2.5">Private Shareholding Company</td>
-                  <td className="py-2.5">{customer.legalForm}</td>
-                  <td className="py-2.5 text-right text-emerald-700 font-semibold">Matched</td>
                 </tr>
                 <tr>
                   <td className="py-2.5 font-medium">Commercial Registration</td>
                   <td className="py-2.5 font-mono">{customer.registrationNo}</td>
-                  <td className="py-2.5 font-mono">{customer.registrationNo}</td>
-                  <td className="py-2.5 text-right text-emerald-700 font-semibold">Matched</td>
                 </tr>
                 <tr>
                   <td className="py-2.5 font-medium">Authorized Signatories Count</td>
                   <td className="py-2.5">3 Joint Signatories</td>
-                  <td className="py-2.5">3 Joint Signatories</td>
-                  <td className="py-2.5 text-right text-emerald-700 font-semibold">Matched</td>
                 </tr>
                 <tr>
                   <td className="py-2.5 font-medium">Beneficial Owners Count</td>
                   <td className="py-2.5">3 Beneficial Owners</td>
-                  <td className="py-2.5">3 Beneficial Owners</td>
-                  <td className="py-2.5 text-right text-emerald-700 font-semibold">Matched</td>
                 </tr>
                 <tr>
                   <td className="py-2.5 font-medium">PEP Linkage Identification</td>
                   <td className="py-2.5">No PEP Registered</td>
-                  <td className="py-2.5 font-bold text-rose-700">Yes (Yousef Barakat 28%)</td>
-                  <td className="py-2.5 text-right text-amber-800 font-bold">Changed in this review</td>
                 </tr>
                 <tr>
                   <td className="py-2.5 font-medium">Risk Grade</td>
                   <td className="py-2.5">Medium</td>
-                  <td className="py-2.5 font-bold text-rose-700">High (Proposed)</td>
-                  <td className="py-2.5 text-right text-amber-800 font-bold">Changed in this review</td>
                 </tr>
               </tbody>
             </table>

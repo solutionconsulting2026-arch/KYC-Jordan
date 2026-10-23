@@ -3,7 +3,6 @@ import {
   SlidersHorizontal,
   RotateCcw,
   Clock,
-  UserCheck,
   Zap,
   ChevronDown,
   ChevronUp,
@@ -123,28 +122,6 @@ export const DemoControlPanel: React.FC = () => {
                 +30 Days
               </button>
             </div>
-          </div>
-
-          {/* 2. Switch Role */}
-          <div className="flex flex-col gap-1.5">
-            <span className="text-slate-400 text-xs flex items-center gap-1.5">
-              <UserCheck className="w-3.5 h-3.5 text-amber-400" />
-              Switch Persona ({currentUser.id} - {currentUser.roles[0]}):
-            </span>
-            <select
-              value={currentUser.id}
-              onChange={(e) => {
-                const found = SEED_USERS.find((u) => u.id === e.target.value);
-                if (found) setCurrentUser(found);
-              }}
-              className="bg-slate-800 text-slate-200 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs outline-none focus:border-amber-400"
-            >
-              {SEED_USERS.map((u) => (
-                <option key={u.id} value={u.id}>
-                  {u.id}: {u.name} ({u.roles.join(', ')})
-                </option>
-              ))}
-            </select>
           </div>
 
           {/* 3. Jump to Pre-staged Case */}
