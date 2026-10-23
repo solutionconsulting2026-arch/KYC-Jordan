@@ -135,19 +135,17 @@ export const CasePage: React.FC = () => {
     <div className="flex-1 flex flex-col px-[14px] pt-[18px] pb-[18px] gap-[22px] select-none animate-in fade-in duration-150">
       {/* Title & Breadcrumbs */}
       <div className="flex flex-col gap-[6px]">
-        <h1 className="text-[20px] leading-[28px] font-semibold text-black">Individual Asset</h1>
+        <h1 className="text-[20px] leading-[28px] font-semibold text-black">Corporate KYC Review</h1>
         <div className="flex items-center gap-2.5 text-[15px] text-[#4A4A4A]">
           <button
             onClick={() => navigate(`#/c360/${customer.cif}`)}
             className="text-[#1877F2] underline underline-offset-2 hover:text-[#0F5FCC]"
           >
-            Home
+            Corporate 360
           </button>
           <ChevronRight className="w-4 h-4 text-[#4A4A4A]" />
-          <span>New</span>
-          <span className="text-[#B0B0B0]">·</span>
           <span>{customer.accountName}</span>
-          <span className="text-[#B0B0B0]">·</span>
+          <ChevronRight className="w-4 h-4 text-[#4A4A4A]" />
           <span className="font-mono font-semibold text-[#1F1F1F]">{kycCase.caseNo}</span>
         </div>
       </div>
@@ -167,8 +165,8 @@ export const CasePage: React.FC = () => {
         <div className="border-t border-[#E3E3E3] px-6 pt-[19px] pb-[14px] flex flex-col gap-[18px]">
           <div className="flex items-center justify-between gap-3">
             <div className="flex items-center gap-2.5 flex-wrap">
-              <span className="h-9 inline-flex items-center bg-[#1877F2] text-white text-[15px] px-[15px] rounded-full">
-                New Lead
+              <span className="h-9 inline-flex items-center bg-[#1877F2] text-white text-[15px] px-[15px] rounded-full font-mono">
+                {kycCase.caseNo}
               </span>
 
               <span className="h-9 inline-flex items-center gap-1.5 text-[14px] text-[#4A4A4A] bg-white px-4 rounded-full border border-[#D0D0D0]">
@@ -227,7 +225,7 @@ export const CasePage: React.FC = () => {
           </div>
 
           <div className="flex items-center justify-between text-[15px] text-[#6B6B6B] px-3">
-            <span>Loan Application v1.0 powered by AutoFlow</span>
+            <span>KYC Review v1.0 powered by AutoFlow</span>
             <span
               className="text-[13px] cursor-help flex items-center gap-1.5 hover:text-[#1F1F1F]"
               title="Suspicions are referred to the Reporting Officer through the Bank's channel (BR-22)."
