@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply antialiased bg-black text-[#1F2329] font-sans;
+    @apply antialiased bg-[#EBEBEB] text-[#1F2329] font-sans;
   }
 }
 
