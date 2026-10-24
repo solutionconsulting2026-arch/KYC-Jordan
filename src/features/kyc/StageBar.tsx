@@ -87,7 +87,7 @@ export const StageBar: React.FC<StageBarProps> = ({ status, eddRequired, activeT
   ];
 
   return (
-    <div className="flex flex-col gap-[14px] select-none">
+    <div className="flex flex-col gap-2.5 select-none">
       {/* Chevron pipeline */}
       <div className="flex items-center overflow-x-auto scrollbar-none">
         {stages.map((stage, idx) => {
@@ -95,32 +95,32 @@ export const StageBar: React.FC<StageBarProps> = ({ status, eddRequired, activeT
           const isFirst = idx === 0;
 
           const clipPathStyle = isFirst
-            ? 'polygon(0% 0%, calc(100% - 24px) 0%, 100% 50%, calc(100% - 24px) 100%, 0% 100%)'
-            : 'polygon(0% 0%, calc(100% - 24px) 0%, 100% 50%, calc(100% - 24px) 100%, 0% 100%, 24px 50%)';
+            ? 'polygon(0% 0%, calc(100% - 18px) 0%, 100% 50%, calc(100% - 18px) 100%, 0% 100%)'
+            : 'polygon(0% 0%, calc(100% - 18px) 0%, 100% 50%, calc(100% - 18px) 100%, 0% 100%, 18px 50%)';
 
           let bgClasses = 'bg-[#EDEDED] text-[#4D4D4D]';
-          let icon = <Lock className="w-[22px] h-[22px] text-white fill-black shrink-0" strokeWidth={2.25} />;
+          let icon = <Lock className="w-[18px] h-[18px] text-white fill-black shrink-0" strokeWidth={2.25} />;
 
           if (state === 'current') {
             bgClasses = 'bg-[#1877F2] text-white';
-            icon = <Flag className="w-[22px] h-[22px] text-white shrink-0" strokeWidth={2} />;
+            icon = <Flag className="w-[18px] h-[18px] text-white shrink-0" strokeWidth={2} />;
           } else if (state === 'done') {
             bgClasses = 'bg-[#2E9E4F] text-white';
-            icon = <CheckCircle2 className="w-[22px] h-[22px] text-white shrink-0" strokeWidth={2} />;
+            icon = <CheckCircle2 className="w-[18px] h-[18px] text-white shrink-0" strokeWidth={2} />;
           }
 
           return (
             <div
               key={stage.id}
-              style={{ clipPath: clipPathStyle, marginLeft: isFirst ? 0 : -16 }}
-              className={`h-[48px] flex-1 min-w-[180px] flex items-center gap-[14px] pr-8 ${
-                isFirst ? 'pl-[64px] rounded-l-full' : 'pl-[58px]'
+              style={{ clipPath: clipPathStyle, marginLeft: isFirst ? 0 : -12 }}
+              className={`h-10 flex-1 min-w-[140px] flex items-center gap-2 pr-6 ${
+                isFirst ? 'pl-5 rounded-l-full' : 'pl-8'
               } ${bgClasses}`}
             >
               {icon}
               <div className="flex flex-col leading-tight overflow-hidden">
-                <span className="text-[15px] truncate">{stage.name}</span>
-                <span className={`text-[12px] ${state === 'locked' ? 'text-[#4D4D4D]' : 'text-white/90'}`}>
+                <span className="text-[13px] truncate" title={stage.name}>{stage.name}</span>
+                <span className={`text-[11px] ${state === 'locked' ? 'text-[#4D4D4D]' : 'text-white/90'}`}>
                   {subLabel}
                 </span>
               </div>
@@ -130,7 +130,7 @@ export const StageBar: React.FC<StageBarProps> = ({ status, eddRequired, activeT
       </div>
 
       {/* Legend */}
-      <div className="flex justify-end items-center gap-[14px] text-[12px] text-[#4D4D4D] pr-[14px]">
+      <div className="flex justify-end items-center gap-3 text-[11px] text-[#4D4D4D] pr-2">
         <span className="flex items-center gap-1.5">
           <span className="w-2 h-2 rounded-full bg-[#1877F2]" /> Current Stage
         </span>
