@@ -17,14 +17,14 @@ export const Field: React.FC<FieldProps> = ({
   helpText,
   error,
   layout = 'horizontal',
-  labelWidth = 'w-[185px]',
+  labelWidth = 'w-[170px]',
   children,
   className = '',
 }) => {
   if (layout === 'vertical') {
     return (
       <div className={`bn-field flex flex-col gap-1.5 ${className}`}>
-        <label className="text-[14px] text-[#555555] flex items-start gap-0.5">
+        <label className="text-[12.5px] text-[#555555] flex items-start gap-0.5">
           {label}
           {mandatory && <span className="text-[#E5262B] leading-none">*</span>}
         </label>
@@ -36,13 +36,13 @@ export const Field: React.FC<FieldProps> = ({
   }
 
   return (
-    <div className={`bn-field flex items-start min-h-[38px] ${className}`}>
+    <div className={`bn-field flex items-start min-h-[34px] ${className}`}>
       <label
-        className={`shrink-0 ${labelWidth} min-h-[38px] text-right text-[15px] text-[#555555] leading-[19px] flex items-center justify-end select-none`}
+        className={`shrink-0 ${labelWidth} min-h-[34px] text-right text-[13px] text-[#555555] leading-[17px] flex items-center justify-end select-none`}
       >
         {label}
       </label>
-      <span className="w-[15px] shrink-0 text-center text-[#E5262B] text-[15px] leading-none -mt-[4px] select-none">
+      <span className="w-[14px] shrink-0 text-center text-[#E5262B] text-[13px] leading-none -mt-[3px] select-none">
         {mandatory ? '*' : ''}
       </span>
       <div className="flex-1 min-w-0 flex flex-col gap-0.5">

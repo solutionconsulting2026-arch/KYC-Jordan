@@ -132,28 +132,28 @@ export const CasePage: React.FC = () => {
   const caseTabs = getAllowedTabs(currentUser, kycCase);
 
   return (
-    <div className="flex-1 flex flex-col px-[14px] pt-[18px] pb-[18px] gap-[22px] select-none animate-in fade-in duration-150">
+    <div className="flex-1 flex flex-col px-4 pt-4 pb-4 gap-4 select-none animate-in fade-in duration-150">
       {/* Title & Breadcrumbs */}
-      <div className="flex flex-col gap-[6px]">
-        <h1 className="text-[20px] leading-[28px] font-semibold text-black">Corporate KYC Review</h1>
-        <div className="flex items-center gap-2.5 text-[15px] text-[#4A4A4A]">
+      <div className="flex flex-col gap-1">
+        <h1 className="text-[18px] leading-[24px] font-semibold text-black">Corporate KYC Review</h1>
+        <div className="flex items-center gap-2 text-[13px] text-[#4A4A4A]">
           <button
             onClick={() => navigate(`#/c360/${customer.cif}`)}
             className="text-[#1877F2] underline underline-offset-2 hover:text-[#0F5FCC]"
           >
             Corporate 360
           </button>
-          <ChevronRight className="w-4 h-4 text-[#4A4A4A]" />
+          <ChevronRight className="w-3.5 h-3.5 text-[#4A4A4A]" />
           <span>{customer.accountName}</span>
-          <ChevronRight className="w-4 h-4 text-[#4A4A4A]" />
+          <ChevronRight className="w-3.5 h-3.5 text-[#4A4A4A]" />
           <span className="font-mono font-semibold text-[#1F1F1F]">{kycCase.caseNo}</span>
         </div>
       </div>
 
       {/* Main White Card */}
-      <div className="bg-white rounded-[20px] flex flex-col">
+      <div className="bg-white rounded-[16px] border border-[#E3E3E3] flex flex-col">
         {/* Stage Bar Chevrons */}
-        <div className="px-6 pt-[19px] pb-[20px]">
+        <div className="px-5 pt-4 pb-4">
           <StageBar
             status={kycCase.status}
             eddRequired={kycCase.eddRequired}
@@ -162,25 +162,25 @@ export const CasePage: React.FC = () => {
         </div>
 
         {/* Stage header row + key information form */}
-        <div className="border-t border-[#E3E3E3] px-6 pt-[19px] pb-[14px] flex flex-col gap-[18px]">
+        <div className="border-t border-[#E3E3E3] px-5 pt-4 pb-3 flex flex-col gap-4">
           <div className="flex items-center justify-between gap-3">
             <div className="flex items-center gap-2.5 flex-wrap">
-              <span className="h-9 inline-flex items-center bg-[#1877F2] text-white text-[15px] px-[15px] rounded-full font-mono">
+              <span className="h-8 inline-flex items-center bg-[#1877F2] text-white text-[13px] px-3.5 rounded-full font-mono">
                 {kycCase.caseNo}
               </span>
 
-              <span className="h-9 inline-flex items-center gap-1.5 text-[14px] text-[#4A4A4A] bg-white px-4 rounded-full border border-[#D0D0D0]">
-                <Calendar className="w-4 h-4 text-[#6B6B6B]" />
+              <span className="h-8 inline-flex items-center gap-1.5 text-[12.5px] text-[#4A4A4A] bg-white px-3.5 rounded-full border border-[#D0D0D0]">
+                <Calendar className="w-3.5 h-3.5 text-[#6B6B6B]" />
                 Due: <strong className="text-[#1F1F1F] font-mono">{kycCase.dueDate}</strong>
               </span>
 
-              <span className="h-9 inline-flex items-center gap-1.5 text-[14px] text-[#4A4A4A] bg-white px-4 rounded-full border border-[#D0D0D0]">
-                <Clock className="w-4 h-4 text-[#6B6B6B]" />
+              <span className="h-8 inline-flex items-center gap-1.5 text-[12.5px] text-[#4A4A4A] bg-white px-3.5 rounded-full border border-[#D0D0D0]">
+                <Clock className="w-3.5 h-3.5 text-[#6B6B6B]" />
                 SLA: <strong className="font-mono text-amber-700">{slaInfo.slaDisplay}</strong>
               </span>
 
               {slaInfo.isOverdue && (
-                <span className="h-9 inline-flex items-center text-[13px] font-medium text-[#B42318] bg-[#FEF3F2] px-4 rounded-full border border-[#FECDCA]">
+                <span className="h-8 inline-flex items-center text-[12px] font-medium text-[#B42318] bg-[#FEF3F2] px-4 rounded-full border border-[#FECDCA]">
                   {slaInfo.overdueDays} Days Overdue ({slaInfo.escalationStatusText})
                 </span>
               )}
@@ -188,74 +188,74 @@ export const CasePage: React.FC = () => {
 
             <button
               onClick={() => setIsNoteModalOpen(true)}
-              className="h-[38px] flex items-center gap-2 text-[15px] text-[#1F1F1F] px-4 rounded-full border border-[#D0D0D0] bg-white hover:bg-[#F5F5F5] transition-colors"
+              className="h-8 flex items-center gap-1.5 text-[13px] text-[#1F1F1F] px-3.5 rounded-full border border-[#D0D0D0] bg-white hover:bg-[#F5F5F5] transition-colors"
             >
-              <StickyNote className="w-4 h-4" />
+              <StickyNote className="w-3.5 h-3.5" />
               Note
             </button>
           </div>
 
           {/* Read-Only Category Classification Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-4 bg-[#FAFAFA] rounded-[8px] border border-[#E3E3E3]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 px-4 py-3 bg-[#FAFAFA] rounded-[8px] border border-[#E3E3E3]">
             <div>
-              <span className="text-[13px] text-[#6B6B6B] block">Category</span>
-              <span className="text-[15px] text-[#1F1F1F] mt-0.5 block">KYC Review</span>
+              <span className="text-[11.5px] text-[#6B6B6B] block">Category</span>
+              <span className="text-[13px] text-[#1F1F1F] mt-0.5 block">KYC Review</span>
             </div>
 
             <div>
-              <span className="text-[13px] text-[#6B6B6B] block">Sub Category</span>
-              <span className="text-[15px] text-[#1F1F1F] mt-0.5 block">
+              <span className="text-[11.5px] text-[#6B6B6B] block">Sub Category</span>
+              <span className="text-[13px] text-[#1F1F1F] mt-0.5 block">
                 {kycCase.type} Review
               </span>
             </div>
 
             <div>
-              <span className="text-[13px] text-[#6B6B6B] block">Sub Sub Category</span>
-              <span className="text-[15px] text-[#1F1F1F] mt-0.5 block">
+              <span className="text-[11.5px] text-[#6B6B6B] block">Sub Sub Category</span>
+              <span className="text-[13px] text-[#1F1F1F] mt-0.5 block">
                 {customer.legalForm} · 24M Cycle
               </span>
             </div>
 
             <div>
-              <span className="text-[13px] text-[#6B6B6B] block">Contact Email</span>
-              <span className="text-[15px] text-[#1877F2] mt-0.5 block truncate">
+              <span className="text-[11.5px] text-[#6B6B6B] block">Contact Email</span>
+              <span className="text-[13px] text-[#1877F2] mt-0.5 block truncate">
                 {customer.email}
               </span>
             </div>
           </div>
 
-          <div className="flex items-center justify-between text-[15px] text-[#6B6B6B] px-3">
+          <div className="flex items-center justify-between text-[12.5px] text-[#6B6B6B] px-1">
             <span>KYC Review v1.0 powered by AutoFlow</span>
             <span
-              className="text-[13px] cursor-help flex items-center gap-1.5 hover:text-[#1F1F1F]"
+              className="text-[11.5px] cursor-help flex items-center gap-1 hover:text-[#1F1F1F]"
               title="Suspicions are referred to the Reporting Officer through the Bank's channel (BR-22)."
             >
-              <Info className="w-4 h-4" /> Confidentiality Governance Applied
+              <Info className="w-3.5 h-3.5" /> Confidentiality Governance Applied
             </span>
           </div>
         </div>
 
         {/* Section Tabs */}
-        <div className="border-t border-[#E3E3E3] pl-[19px] pr-6 py-[14px] flex items-center justify-between gap-3">
-          <div className="flex items-center gap-2.5 overflow-x-auto scrollbar-none">
+        <div className="border-t border-[#E3E3E3] px-5 py-3 flex items-center justify-between gap-3">
+          <div className="flex items-center gap-2 overflow-x-auto scrollbar-none">
             {caseTabs.map((tab) => {
               const isActive = activeTab === tab.id;
 
-              let icon = <FileText className="w-[18px] h-[18px]" />;
-              if (tab.id === 'initiation') icon = <Key className="w-[18px] h-[18px]" />;
-              else if (tab.id === 'documents') icon = <FileText className="w-[18px] h-[18px]" />;
-              else if (tab.id === 'ownership') icon = <Users2 className="w-[18px] h-[18px]" />;
-              else if (tab.id === 'screening') icon = <Search className="w-[18px] h-[18px]" />;
-              else if (tab.id === 'risk') icon = <ShieldAlert className="w-[18px] h-[18px]" />;
-              else if (tab.id === 'review') icon = <CheckCircle2 className="w-[18px] h-[18px]" />;
-              else if (tab.id === 'edd') icon = <AlertTriangle className="w-[18px] h-[18px]" />;
-              else if (tab.id === 'closure') icon = <Award className="w-[18px] h-[18px]" />;
+              let icon = <FileText className="w-4 h-4" />;
+              if (tab.id === 'initiation') icon = <Key className="w-4 h-4" />;
+              else if (tab.id === 'documents') icon = <FileText className="w-4 h-4" />;
+              else if (tab.id === 'ownership') icon = <Users2 className="w-4 h-4" />;
+              else if (tab.id === 'screening') icon = <Search className="w-4 h-4" />;
+              else if (tab.id === 'risk') icon = <ShieldAlert className="w-4 h-4" />;
+              else if (tab.id === 'review') icon = <CheckCircle2 className="w-4 h-4" />;
+              else if (tab.id === 'edd') icon = <AlertTriangle className="w-4 h-4" />;
+              else if (tab.id === 'closure') icon = <Award className="w-4 h-4" />;
 
               return (
                 <button
                   key={tab.id}
                   onClick={() => handleTabChange(tab.id)}
-                  className={`h-[41px] px-[14px] rounded-[6px] text-[15px] whitespace-nowrap transition-colors border flex items-center gap-2.5 ${
+                  className={`h-9 px-3 rounded-[6px] text-[13px] whitespace-nowrap transition-colors border flex items-center gap-2 ${
                     isActive
                       ? 'bg-black text-white border-black'
                       : 'bg-white text-[#1F1F1F] border-[#D9D9D9] hover:bg-[#F5F5F5]'
@@ -268,18 +268,18 @@ export const CasePage: React.FC = () => {
             })}
           </div>
 
-          <div className="hidden sm:flex items-center gap-5 text-[#1F1F1F] shrink-0">
+          <div className="hidden sm:flex items-center gap-4 text-[#1F1F1F] shrink-0">
             <button className="hover:text-black/60 transition-colors" title="Layout">
-              <LayoutTemplate className="w-5 h-5" />
+              <LayoutTemplate className="w-[18px] h-[18px]" />
             </button>
             <button className="hover:text-black/60 transition-colors" title="More Options">
-              <MoreVertical className="w-5 h-5" />
+              <MoreVertical className="w-[18px] h-[18px]" />
             </button>
           </div>
         </div>
 
         {/* Active Stage Tab Viewport */}
-        <div className="border-t border-[#E3E3E3] px-6 py-6">
+        <div className="border-t border-[#E3E3E3] px-5 py-5">
           {activeTab === 'initiation' && (
             <S06InitiationTab
               kycCase={kycCase}
@@ -347,12 +347,12 @@ export const CasePage: React.FC = () => {
         </div>
 
         {/* Sticky Centered Footer Controls */}
-        <div className="sticky bottom-0 z-10 bg-white rounded-b-[20px] border-t border-[#E3E3E3] py-[14px] flex items-center justify-center gap-5">
+        <div className="sticky bottom-0 z-10 bg-white rounded-b-[16px] border-t border-[#E3E3E3] py-3 flex items-center justify-center gap-4">
           <button
             type="button"
             disabled={kycCase.status === 'Closed'}
             onClick={() => showToast({ type: 'info', title: 'Draft Saved', description: 'Work-in-progress state preserved.' })}
-            className="h-11 px-5 rounded-full text-[17px] border border-[#DADADA] bg-white text-[#8A8A8A] hover:text-[#1F1F1F] hover:border-[#BDBDBD] transition-colors disabled:cursor-not-allowed"
+            className="h-9 px-5 rounded-full text-[14px] border border-[#DADADA] bg-white text-[#8A8A8A] hover:text-[#1F1F1F] hover:border-[#BDBDBD] transition-colors disabled:cursor-not-allowed"
           >
             Save
           </button>
@@ -361,7 +361,7 @@ export const CasePage: React.FC = () => {
             type="button"
             disabled={kycCase.status === 'Closed'}
             onClick={handleSaveAndProceed}
-            className="h-11 px-5 rounded-full text-[17px] bg-[#C9DE2A] hover:bg-[#BBD11F] text-[#1F1F1F] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="h-9 px-5 rounded-full text-[14px] bg-[#C9DE2A] hover:bg-[#BBD11F] text-[#1F1F1F] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Save and Proceed
           </button>
@@ -369,7 +369,7 @@ export const CasePage: React.FC = () => {
           <button
             type="button"
             onClick={() => navigate(`#/c360/${customer.cif}`)}
-            className="h-11 px-5 rounded-full text-[17px] border border-[#D0D0D0] bg-white text-[#1F1F1F] hover:bg-[#F5F5F5] transition-colors"
+            className="h-9 px-5 rounded-full text-[14px] border border-[#D0D0D0] bg-white text-[#1F1F1F] hover:bg-[#F5F5F5] transition-colors"
           >
             Cancel
           </button>

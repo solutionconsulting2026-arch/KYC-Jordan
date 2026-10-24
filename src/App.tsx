@@ -15,9 +15,9 @@ function AppContent() {
   const [isHierarchyOpen, setIsHierarchyOpen] = useState(false);
 
   return (
-    <div className="h-screen w-screen overflow-hidden bg-[#EBEBEB] text-[#1F2329] font-sans flex flex-col antialiased">
+    <div className="h-screen w-screen overflow-hidden bg-white text-[#1F2329] font-sans flex flex-col antialiased">
       {/* Main Workspace */}
-      <main className="flex-1 flex flex-col overflow-y-auto bg-[#EBEBEB]">
+      <main className="flex-1 flex flex-col overflow-y-auto bg-white">
         {currentRoute.route === 'c360' && <Corporate360Page />}
         {currentRoute.route === 'kyc' && <CasePage />}
         {currentRoute.route === 'worklist' && <WorklistPage />}
